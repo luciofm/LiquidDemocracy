@@ -1,39 +1,31 @@
-# kotlin-bootstrap
+### Liquid Democracy
 
-Clone this repository to have Kotlin + Gradle up and running in no time!
+Write a program to count votes in a referendum according to the following rules:
+* Voters can choose one of the available options or delegate the choice to another voter.
+* It is possible that a voter directly or indirectly delegates the vote to themselves. Such
+votes become invalid. All votes delegated to such voter also become invalid.
+* The result of the referendum is the list of options that got at least one vote with the
+number of votes for each option.
+* If there are invalid votes they should be counted and reported.
 
-## Tool Versions
-
-| Tool   | Version | Notes                                                                                          |
-| ------ | ------- | ---------------------------------------------------------------------------------------------- |
-| Kotlin | 1.3.61  |                                                                                                |
-| Gradle | 6.0.1   | Use the wrapper -- no need to install locally                                                  |
-| SLF4J  | 1.7.5   | Only the API is used at compile time -- `log4j` is used as the runtime logging implementation. |
-| log4j  | 2.11.1  |                                                                                                |
-
-## Usage
-
-The following instructions are for command line interaction. IntelliJ has tight integration with Gradle if you prefer the GUI.
-
-### Compile
-
-From the project root run: `./gradlew build`
-
-### Run
-
-From the project root run:
-
-```bash
-$ ./gradlew run
-
-> Task :run
-Hello World!
-
-BUILD SUCCESSFUL in 0s
-2 actionable tasks: 1 executed, 1 up-to-date
-
+# Input
+List of votes.
+Each line consists of voter’s name and their choice, which can be either pick <choice>or delegate <name>. Names and choices are alphanumeric strings with no spaces. Example:
+```
+Alice pick Pizza
+Bob delegate Carol
+Carol pick Salad
+Dave delegate Eve
+Eve delegate Mallory
+Mallory delegate Eve
 ```
 
-## Logging
-
-`SLF4J` provides the logging API within the code and `log4j` provides the logging implementation. You will find the logging configuration at `src/main/resources/log4j2.properties`.
+# Output
+One line for each choice and a line with the number of invalid votes if there are any. The lines
+should contain the number of votes and the choice or the word invalid. The lines should be
+sorted in descending order by number of votes with the invalid line coming last. Example:
+```
+2 Salad
+1 Pizza
+3 invalid
+```
